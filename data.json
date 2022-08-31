@@ -2,6 +2,11 @@
   "rooms": [
     {
       "id": 1,
+      "name": "Curie",
+      "capacity": 5,
+      "display": true,
+      "whiteboard": false,
+      "airConditioning": true,
       "bookings": [
         {
           "person": {
@@ -18,37 +23,29 @@
     },
     {
       "id": 2,
-      "bookings": [
-        {
-          "person": {
-            "name": "Betty",
-            "surname": "Bassetti",
-            "role": "Product manager"
-          },
-          "timeFrame": {
-            "start": 1661175000000,
-            "end": 1661178600000
-          }
-        },
-        {
-          "person": {
-            "name": "John",
-            "surname": "Stane",
-            "role": "Backend Software engineer"
-          },
-          "timeFrame": {
-            "start": 1661183100000,
-            "end": 1661187600000
-          }
-        }
-      ]
+      "name": "Furie",
+      "capacity": 10,
+      "display": false,
+      "whiteboard": true,
+      "airConditioning": true,
+      "bookings": []
     },
     {
       "id": 3,
+      "name": "Turie",
+      "capacity": 10,
+      "display": true,
+      "whiteboard": true,
+      "airConditioning": false,
       "bookings": []
     },
     {
       "id": 4,
+      "name": "Zurie",
+      "capacity": 2,
+      "display": false,
+      "whiteboard": false,
+      "airConditioning": false,
       "bookings": []
     }
   ]
