@@ -10,6 +10,7 @@ let dataFilePath = './data.json';
 
 const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Headers', '*');
   
 
   //Add error listener
@@ -25,6 +26,7 @@ const server = http.createServer((req, res) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
+      res.setHeader('Access-Control-Allow-Headers', '*');
 
       var obj = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
       let response = obj;
@@ -34,6 +36,7 @@ const server = http.createServer((req, res) => {
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
       res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST');
+      res.setHeader('Access-Control-Allow-Headers', '*');
 
       var obj = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
       let response = obj.rooms;
@@ -51,6 +54,7 @@ const server = http.createServer((req, res) => {
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', '*');
 
     const chunks = [];
     req.on('data', chunk => chunks.push(chunk));
@@ -69,7 +73,8 @@ const server = http.createServer((req, res) => {
       
       // write file
       fs.writeFileSync(dataFilePath, updatedData);
-      res.end();
+      //res.writeHead(200, {"Content-Type": "text/plain"});
+      res.end('{"result": "All good"}');
     })
   } else if (req.method === 'OPTIONS') {
     console.log('OPTIONS');
@@ -77,6 +82,7 @@ const server = http.createServer((req, res) => {
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST');
+    res.setHeader('Access-Control-Allow-Headers', '*');
     //https://stackoverflow.com/questions/25727306/request-header-field-access-control-allow-headers-is-not-allowed-by-access-contr
     res.end();
   } else {

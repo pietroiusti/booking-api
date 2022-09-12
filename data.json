@@ -2,7 +2,7 @@
   "rooms": [
     {
       "id": 1,
-      "name": "Curie",
+      "name": "Hegel",
       "capacity": 5,
       "display": true,
       "whiteboard": false,
@@ -23,7 +23,7 @@
     },
     {
       "id": 2,
-      "name": "Furie",
+      "name": "Kant",
       "capacity": 10,
       "display": false,
       "whiteboard": true,
@@ -32,7 +32,7 @@
     },
     {
       "id": 3,
-      "name": "Turie",
+      "name": "Nietzsche",
       "capacity": 10,
       "display": true,
       "whiteboard": true,
@@ -41,7 +41,7 @@
     },
     {
       "id": 4,
-      "name": "Zurie",
+      "name": "Stevenson",
       "capacity": 2,
       "display": false,
       "whiteboard": false,
