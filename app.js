@@ -74,8 +74,12 @@ const server = http.createServer((req, res) => {
       // write file
       fs.writeFileSync(dataFilePath, updatedData);
       //res.writeHead(200, {"Content-Type": "text/plain"});
-      res.end('{"result": "All good"}');
-    })
+      let obj = {
+        id: id,
+        result: 'All good',
+      };
+      res.end(JSON.stringify(obj));
+    });
   } else if (req.method === 'OPTIONS') {
     console.log('OPTIONS');
     res.statusCode = 200;
