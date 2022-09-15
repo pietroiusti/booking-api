@@ -59,7 +59,7 @@ const server = http.createServer((req, res) => {
     const chunks = [];
     req.on('data', chunk => chunks.push(chunk));
     req.on('end', () => {
-      const updatedRoom = JSON.parse(Buffer.concat(chunks).toString());      
+      const updatedRoom = JSON.parse(Buffer.concat(chunks).toString());
       let id = updatedRoom.id;
       
       let oldData = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
@@ -80,6 +80,44 @@ const server = http.createServer((req, res) => {
       };
       res.end(JSON.stringify(obj));
     });
+  } else if (req.method === 'POST') {
+
+    console.log('GOT POST REQ');
+
+    const chunks = [];
+    req.on('data', chunk => chunks.push(chunk));
+    
+    req.on('end', () => {
+      let newRoom = JSON.parse(Buffer.concat(chunks).toString());
+      console.log(newRoom);
+      
+      newRoom.bookings = [];
+      newRoom.id = Number(newRoom.id);
+      newRoom.capacity = Number(newRoom.capacity);
+      newRoom.display = newRoom.display === 'true' ? true : false;
+      newRoom.whiteboard = newRoom.whiteboard === 'true' ? true : false;
+      newRoom.airConditioning = newRoom.airConditioning === 'true' ? true : false;
+
+      console.log(newRoom);
+
+      let data = JSON.parse(fs.readFileSync('./data.json', 'utf8')); // current data
+      data.rooms.push(newRoom);
+
+      debugger
+
+      console.log(data);
+
+      try {
+        fs.writeFileSync(dataFilePath, JSON.stringify(data)); // right
+      } catch(e) {
+        res.end(JSON.stringify({result: e}));
+        return;
+      }
+
+      res.end(JSON.stringify({result: 'All good'}));
+
+    });
+
   } else if (req.method === 'OPTIONS') {
     console.log('OPTIONS');
     res.statusCode = 200;
