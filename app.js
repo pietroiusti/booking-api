@@ -114,7 +114,7 @@ const server = http.createServer((req, res) => {
         return;
       }
 
-      res.end(JSON.stringify({result: 'All good'}));
+      res.end(JSON.stringify({result: 'All good', room: newRoom}));
 
     });
 
