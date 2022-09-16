@@ -140,42 +140,6 @@ const server = http.createServer((req, res) => {
         console.log('what?');
       }
     });    
-    
-    /*
-    const chunks = [];
-    req.on('data', chunk => chunks.push(chunk));
-    
-    req.on('end', () => {
-      let newRoom = JSON.parse(Buffer.concat(chunks).toString());
-      console.log(newRoom);
-      
-      newRoom.bookings = [];
-      newRoom.id = Number(newRoom.id);
-      newRoom.capacity = Number(newRoom.capacity);
-      newRoom.display = newRoom.display === 'true' ? true : false;
-      newRoom.whiteboard = newRoom.whiteboard === 'true' ? true : false;
-      newRoom.airConditioning = newRoom.airConditioning === 'true' ? true : false;
-
-      console.log(newRoom);
-
-      let data = JSON.parse(fs.readFileSync('./data.json', 'utf8')); // current data
-      data.rooms.push(newRoom);
-
-      debugger
-
-      console.log(data);
-
-      try {
-        fs.writeFileSync(dataFilePath, JSON.stringify(data)); // right
-      } catch(e) {
-        res.end(JSON.stringify({result: e}));
-        return;
-      }
-
-      res.end(JSON.stringify({result: 'All good', room: newRoom}));
-
-    });
-    */
   } else if (req.method === 'OPTIONS') {
     console.log('OPTIONS');
     res.statusCode = 200;
