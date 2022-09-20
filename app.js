@@ -90,7 +90,28 @@ const server = http.createServer((req, res) => {
     req.on('end', () => {
       let reqObj = JSON.parse(Buffer.concat(chunks).toString());
 
-      if (reqObj.type === 'create') {
+      if (reqObj.type === 'create2') {
+        console.log('create2');
+
+        const newRoom = reqObj.val;
+
+        console.log('newRoom: ');
+        console.log(newRoom);
+
+        let currentData = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
+
+        currentData.rooms.push(newRoom);
+
+        try {
+          fs.writeFileSync(dataFilePath, JSON.stringify(currentData));
+        } catch(e) {
+          res.end(JSON.stringify({result: e}));
+          return;
+        }
+
+        res.end(JSON.stringify({result: 'All good', room: newRoom}));
+
+      } else if (reqObj.type === 'create') {
         console.log('create');
 
         const newRoom = JSON.parse(Buffer.concat(chunks).toString()).val;
