@@ -12,6 +12,7 @@ const server = http.createServer((req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
   res.setHeader('Access-Control-Allow-Headers', '*');
   
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
 
   //Add error listener
   req.on('error', (err) => {
@@ -35,7 +36,7 @@ const server = http.createServer((req, res) => {
       res.statusCode = 200;
       res.setHeader('Content-Type', 'application/json');
       res.setHeader('Access-Control-Allow-Origin', '*');
-      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST');
+      res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
       res.setHeader('Access-Control-Allow-Headers', '*');
 
       var obj = JSON.parse(fs.readFileSync(dataFilePath, 'utf8'));
@@ -161,12 +162,31 @@ const server = http.createServer((req, res) => {
         console.log('what?');
       }
     });    
+  } else if (req.method === 'DELETE') {
+    debugger;
+    console.log('DELETE');
+
+    const roomId = Number(req.url.match(/[0-9]+/)[0]);
+
+    let data = JSON.parse(fs.readFileSync('./data.json', 'utf8')); // current data
+
+    data.rooms = data.rooms.filter(r => r.id !== roomId);
+    
+    try {
+      fs.writeFileSync(dataFilePath, JSON.stringify(data));
+    } catch (e) {
+      res.end(JSON.stringify({ result: e }));
+      return;
+    }
+
+    res.end(JSON.stringify({ result: 'All good', id: roomId }));
+
   } else if (req.method === 'OPTIONS') {
     console.log('OPTIONS');
     res.statusCode = 200;
     res.setHeader('Content-Type', 'application/json');
     res.setHeader('Access-Control-Allow-Origin', '*');
-    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST');
+    res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, PUT, POST, DELETE');
     res.setHeader('Access-Control-Allow-Headers', '*');
     //https://stackoverflow.com/questions/25727306/request-header-field-access-control-allow-headers-is-not-allowed-by-access-contr
     res.end();
