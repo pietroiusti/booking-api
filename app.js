@@ -64,16 +64,13 @@ const server = http.createServer((req, res) => {
       let id = updatedRoom.id;
       
       let oldData = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
-      //let oldRoom = oldData.rooms.find( r => r.id === id );      
-
-      console.log(oldData);
+      let oldRoomIndex = oldData.rooms.findIndex( r => r.id === id );
 
       let updatedData = oldData;
-      updatedData.rooms[updatedRoom.id - 1] = updatedRoom; //<< we rely on order
-      updatedData = JSON.stringify(updatedData);
+      updatedData.rooms[oldRoomIndex] = updatedRoom;
       
       // write file
-      fs.writeFileSync(dataFilePath, updatedData);
+      fs.writeFileSync(dataFilePath, JSON.stringify(updatedData));
       //res.writeHead(200, {"Content-Type": "text/plain"});
       let obj = {
         id: id,
