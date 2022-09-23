@@ -93,6 +93,9 @@ const server = http.createServer((req, res) => {
 
       let currentData = JSON.parse(fs.readFileSync('./data.json', 'utf8'));
 
+      newRoom.id = createId(currentData.rooms);
+      debugger
+
       currentData.rooms.push(newRoom);
 
       try {
@@ -142,3 +145,18 @@ const server = http.createServer((req, res) => {
 server.listen(port, () => {
   console.log(`Server running at port ${port}`);
 });
+
+function createId(arr) {
+  let numArr = arr.map(obj => obj.id);
+
+  let max = Math.max(...numArr);
+
+  for (let i = 0; i < max; i++) {
+    if (!numArr.includes(i)) {
+      return i;
+    }
+  }
+
+  return max + 1;
+
+}
