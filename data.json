@@ -1,1 +1,52 @@
-{"rooms":[{"id":1,"name":"Hegel","display":false,"whiteboard":false,"airConditioning":false,"capacity":10,"bookings":[{"person":{"name":"Matt","surname":"Tonelli","role":"Designer"},"timeFrame":{"start":1661331600000,"end":1661337000000}},{"person":{"name":"John","surname":"McBar","role":"Software Engineer"},"timeFrame":{"start":1662719460000,"end":1662719640000}}]},{"id":2,"name":"Kant","capacity":10,"display":false,"whiteboard":true,"airConditioning":true,"bookings":[]},{"id":4,"name":"Stevenson","capacity":2,"display":false,"whiteboard":false,"airConditioning":false,"bookings":[]}]}
+{
+  "rooms": [
+    {
+      "id": 1,
+      "name": "Hegel",
+      "capacity": 5,
+      "display": true,
+      "whiteboard": false,
+      "airConditioning": true,
+      "bookings": [
+        {
+          "person": {
+            "name": "Matthew",
+            "surname": "Tonelli",
+            "role": "Designer"
+          },
+          "timeFrame": {
+            "start": 1661331600000,
+            "end": 1661337000000
+          }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Kant",
+      "capacity": 10,
+      "display": false,
+      "whiteboard": true,
+      "airConditioning": true,
+      "bookings": []
+    },
+    {
+      "id": 3,
+      "name": "Nietzsche",
+      "capacity": 10,
+      "display": true,
+      "whiteboard": true,
+      "airConditioning": false,
+      "bookings": []
+    },
+    {
+      "id": 4,
+      "name": "Stevenson",
+      "capacity": 2,
+      "display": false,
+      "whiteboard": false,
+      "airConditioning": false,
+      "bookings": []
+    }
+  ]
+}
